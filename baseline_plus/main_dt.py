@@ -11,7 +11,7 @@ parser.add_argument("-o", "--output", help="output path:", type=str, default='..
 args = parser.parse_args()
 model_name = args.model_name
 output_path = args.output
-# print(output_path)
+
 import os
 if not os.path.exists(output_path):  # 如果路径不存在
     os.makedirs(output_path)
@@ -34,17 +34,15 @@ tf.random.set_seed(SEED)
 from knn_baseline import knn_model
 from svm_baseline import svm_model
 from dt_baseline import dt_model
-from mlp_baseline import mlp_model
+
 from tcn_baseline import tcn_model
 from fcn_baseline import fcn_model
 from gru_baseline import gru_model
-from gbdt_baseline import gbdt_model
+
 from cnn_baseline import cnn_model
 
 from sklearn.metrics import classification_report
 from sklearn.metrics import f1_score,fbeta_score
-from timeit import default_timer as timer
-
 
 
 dtpredlist = np.loadtxt('/home/wamdm/xinli/competition/gwac_gpu/cpu_output/S120000R4/DT_finelpred_onid.csv',dtype=int, delimiter=",")
@@ -123,11 +121,6 @@ if __name__ == '__main__':
         pred_dt = dt_model(test_dataset)
         metrics(pred_dt, model_name)
         print("================DT END ============================")
-    elif model_name == 'GBDT':
-        test_dataset = load_test_data('GBDT')
-        pred_gbdt = gbdt_model(test_dataset)
-        metrics(pred_gbdt, model_name)
-        print("================GBDT END ============================")
     elif model_name == 'KNN':
         test_dataset = load_test_data('KNN')
         pred_knn = knn_model(test_dataset)

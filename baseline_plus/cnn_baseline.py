@@ -3,9 +3,8 @@
 import numpy as np
 import matplotlib.image as mpimg
 SEED = 6666666
-import random
 from tensorflow.keras.models import load_model
-from sklearn.metrics import classification_report,fbeta_score
+from sklearn.metrics import classification_report
 import os
 
 # 将读取的img转化为矩阵

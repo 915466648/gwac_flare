@@ -1,8 +1,8 @@
 # coding=utf-8
-from sklearn.neighbors import KNeighborsClassifier
+
 from sklearn.metrics import classification_report
 import joblib
-from sklearn.metrics import fbeta_score
+
 
 def knn_model(test_dataset):
     print("================KNN Start=====================")
