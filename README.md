@@ -2,9 +2,9 @@ GWAC数据地址：https://tianchi.aliyun.com/dataset/dataDetail?dataId=88856
 
 Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competition/entrance/531805/introduction
 
-# 代码结构
+## 代码结构
 
-|——data_process：和044_16280425-G0013两个天区的数据和28个耀发数据数据增强、处理后的数据放在dataset中。
+#### data_process：数据预处理代码。
 
 ​			|——diff-023_15730595-G0013.ipynb：对GWAC原始数据中的023_15730595-G0013的数据进行处理，包括截断、降噪、标准化，记录生成的每一个子序列所属的ID，作为测试集的一部分。
 
@@ -20,7 +20,7 @@ Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competi
 
 ​			|——plot4flare28.ipynb：绘制CNN模型所需的图片数据。通过更改输入文件，为所有数据生成
 
-|——dataset：部分处理后的数据。由于文件过大，因此此处无法将所有处理后的数据上传。读者可使用数据预处理方法与原数据自行处理。
+#### dataset：部分处理后的数据。由于文件过大，因此无法将所有处理后的数据上传。读者可使用数据预处理方法与原数据自行处理。
 
 ​			|——023_15730595-G0013_negative_test.csv：测试集中的负样本
 
@@ -32,7 +32,7 @@ Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competi
 
 ​			|——augment_positive150000.csv：训练集中的正样本，此正样本通过注入由少量真实耀发子序列生成的耀发信号生成，即第二种数据增强方式。
 
-|——model_code ：基本的模型用法，其中包括网格搜索的过程
+#### model_code ：基本的模型用法，其中包括网格搜索的过程。
 
 ​			|——fcncam.ipynb：绘制FCN模型的CAM热力图
 
@@ -56,7 +56,7 @@ Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competi
 
 ​			|——tcn_new.py：TCN模型的训练及测试函数，并保存最佳模型。
 
-|——cpu_output/s120000r4，保存的最佳模型，后续tcn_plus和baseline_plus需要使用
+#### cpu_output/s120000r4，保存的最佳模型，后续tcn_plus和baseline_plus需要使用
 
 ​			|——tryrepeat95：TCN的最佳模型
 
@@ -72,7 +72,7 @@ Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competi
 
 ​			|——KNN0.2606461086637298.pkl：KNN的最佳模型
 
-|——tcn_plus：将TCN提取的特征与人工提取的特征进行结合，共同输入到SVM和Decision Tree中
+#### tcn_plus：将TCN提取的特征与人工提取的特征进行结合，共同输入到SVM和Decision Tree中。
 
 ​			|——main_embedding_tcn.py：主函数，加载数据、计算评价指标、传递参数、调用各子函数。
 
@@ -80,7 +80,7 @@ Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competi
 
 ​			|——tcn_embedding_svm.py：将TCN提取的特征与人工提取的特征进行结合，输入到SVM模型进行训练和预测的函数。
 
-|——baseline_plus：级联方式，包括baseline级联其他模型和SVM与Decision Tree级联其他模型
+#### baseline_plus：级联方式，包括baseline级联其他模型和SVM与Decision Tree级联其他模型
 
 ​			|——cnn_baseline.py：利用最佳CNN模型将template_matching或SVM或Decision Tree初筛过的样本进一步筛选的子函数。
 
@@ -102,11 +102,11 @@ Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competi
 
 ​			|——tcn_baseline.py：利用最佳TCN模型将template_matching或SVM或Decision Tree初筛过的样本进一步筛选的子函数。
 
-|——template_matching：科学领域传统的经典方法，模板匹配
+#### template_matching：科学领域传统的经典方法，模板匹配
 
-|——README.md
+### README.md
 
-|——requirments.txt：本项目所必须的包及版本
+#### requirments.txt：本项目所必须的包及版本
 
 
 
