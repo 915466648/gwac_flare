@@ -1,7 +1,3 @@
-GWAC数据地址：https://tianchi.aliyun.com/dataset/dataDetail?dataId=88856
-
-Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competition/entrance/531805/introduction
-
 ## 代码结构
 
 ------
@@ -39,7 +35,8 @@ Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competi
 
 - ------
 
-  #### model_code ：基本的模型用法，其中包括网格搜索的过程。
+-   #### model_code ：基本的模型用法，其中包括网格搜索的过程。
+
 
 
 ​			|——fcncam.ipynb：绘制FCN模型的CAM热力图
@@ -66,7 +63,8 @@ Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competi
 
 - ------
 
-  #### cpu_output/s120000r4，保存的最佳模型，后续tcn_plus和baseline_plus需要使用
+-   #### cpu_output/s120000r4，保存的最佳模型，后续tcn_plus和baseline_plus需要使用
+
 
 
 ​			|——tryrepeat95：TCN的最佳模型
@@ -85,7 +83,8 @@ Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competi
 
 - ------
 
-  #### tcn_plus：将TCN提取的特征与人工提取的特征进行结合，共同输入到SVM和Decision Tree中。
+-   #### tcn_plus：将TCN提取的特征与人工提取的特征进行结合，共同输入到SVM和Decision Tree中。
+
 
 
 ​			|——main_embedding_tcn.py：主函数，加载数据、计算评价指标、传递参数、调用各子函数。
@@ -96,7 +95,8 @@ Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competi
 
 - ------
 
-  #### baseline_plus：级联方式，包括baseline级联其他模型和SVM与Decision Tree级联其他模型
+-   #### baseline_plus：级联方式，包括baseline级联其他模型和SVM与Decision Tree级联其他模型
+
 
 
 ​			|——cnn_baseline.py：利用最佳CNN模型将template_matching或SVM或Decision Tree初筛过的样本进一步筛选的子函数。
@@ -121,13 +121,18 @@ Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competi
 
 - ------
 
-  #### template_matching：科学领域传统的经典方法，模板匹配
+- #### template_matching：科学领域传统的经典方法，模板匹配
+
 
 
 - ### README.md
 
 
 - #### requirments.txt：本项目所必须的包及版本
+
+  GWAC数据地址：https://tianchi.aliyun.com/dataset/dataDetail?dataId=88856
+
+  Baseline（Template Matching）代码地址：https://tianchi.aliyun.com/competition/entrance/531805/introduction
 
 
 
