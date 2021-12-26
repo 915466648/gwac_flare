@@ -40,9 +40,6 @@ def cnn_model(data_size,radio, output_path,batch,epoch,learnrate,iftemplate):
     train_name_list = np.hstack((train_negative_pool , train_positive_pool))
     y_train = np.vstack(([[0]]*len(train_negative_pool),[[1]]*len(train_positive_pool)))
     print("y_train.shape = ",y_train.shape)
-    # y_train = np.hstack((np.zeros(len(train_negative_pool)), np.ones(len(train_positive_pool))))
-    # print(y_train)
-    # print(y_train.shape)
     # 对训练集的数据和标签进行同步shuffle
     state = np.random.get_state()
     np.random.shuffle(train_name_list)
@@ -51,7 +48,7 @@ def cnn_model(data_size,radio, output_path,batch,epoch,learnrate,iftemplate):
     x_train = np.zeros((len(train_name_list), 50, 150, 1))
     for i,item in enumerate(train_name_list):
         x_train[i] = img_to_array(item)
-    # x_train = (img_to_array(item) for item in train_name_list)
+
     print("x_train.shape = ",x_train.shape)
     # 加载测试数据集，需要注意的是，需要按照文件名顺序读取，以便将片段对应到id上，并进一步计算在ID上的得分
     test_negative_list = [str(i)+'.png' for i in range(0,len(os.listdir('../dataset/test/test_negative/')))]
@@ -62,10 +59,6 @@ def cnn_model(data_size,radio, output_path,batch,epoch,learnrate,iftemplate):
     test_positive_pool = [os.path.join('../dataset/test/flare28_2/',name) for name in test_positive_list]
     test_name_list = np.hstack((test_negative_pool, test_positive_pool))
     y_test = np.vstack(([[0]] * len(test_negative_pool), [[1]] * len(test_positive_pool)))
-    # y_test = np.hstack((np.zeros(len(test_negative_pool)), np.ones(len(test_positive_pool))))
-
-    # print(y_test)
-    # x_test = (img_to_array(item) for item in test_name_list)
 
     x_test = np.zeros((len(test_name_list), 50, 150, 1))
     for i,item in enumerate(test_name_list):

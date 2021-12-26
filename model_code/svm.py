@@ -8,7 +8,6 @@ from sklearn.metrics import make_scorer,fbeta_score
 def svm_model(train_dataset,test_dataset,output_path):
     print("================SVM  Start=====================")
     ## 加载序列数据
-    # dimen = len(train_dataset[0])
     X_train = train_dataset[:, 0:13]
     Y_train = train_dataset[:, 13]
     X_test = test_dataset[:, 0:13]
@@ -19,8 +18,8 @@ def svm_model(train_dataset,test_dataset,output_path):
     print("X_test.shape",X_test.shape)
     print("Y_test.shape",Y_test.shape)
 
-    # X_train, X_test, Y_train, Y_test = train_test_split(train_data, train_target, test_size=0.2, random_state=0)
-    # # kernel = 'rbf'
+
+
     # parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4],'C': [1, 10, 100, 1000]},
     #               {'kernel': ['poly'], 'C': [1], 'degree': [2, 3]}]
     # parameters = {'gamma': [1e-3,1e-3, 1e-4],'C': [1, 10, 100]}
@@ -53,7 +52,6 @@ def svm_model(train_dataset,test_dataset,output_path):
     # # joblib.dump(clf_rbf, '../output/SVM_rbf.pkl')
     # print("The score of rbf is : %f"%score_rbf)
 
-
     Y_pred = clf.predict(X_test)
     f2 = fbeta_score(Y_test, Y_pred, beta=2)
     print("f2",f2)
@@ -62,5 +60,3 @@ def svm_model(train_dataset,test_dataset,output_path):
     path = output_path + 'SVM-rbf'+str(f2)+'.pkl'
     joblib.dump(clf, path)
     return Y_pred
-
-

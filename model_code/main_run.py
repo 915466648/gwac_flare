@@ -48,19 +48,6 @@ np.random.seed(SEED)
 
 import tensorflow as tf
 tf.random.set_seed(SEED)
-#
-# # from tfdeterminism import patch
-# # patch()
-# tf.compat.v1.set_random_seed(SEED)
-# from keras import backend as K
-# # session_conf = tf.compat.v1.ConfigProto(allow_soft_placement=True,log_device_placement=True)
-# session_conf = tf.compat.v1.ConfigProto()
-# # session_conf.gpu_options.per_process_gpu_memory_fraction = 0.9 # 占用GPU90%的显存
-# ######### session_conf.gpu_options.allow_growth = True
-# sess = tf.compat.v1.Session(graph=tf.compat.v1.get_default_graph(), config=session_conf)
-# K.set_session(sess)
-# # tf.compat.v1.disable_eager_execution()
-
 
 
 # 导入各个模型
@@ -72,12 +59,8 @@ from fcn import fcn_model
 from gru import gru_model
 from cnn import cnn_model
 
-
-
 from sklearn.metrics import classification_report
 from sklearn.metrics import f1_score,fbeta_score
-from timeit import default_timer as timer
-
 
 # 加载所有的正负样本，然后根据总数据量和正负比例的参数，从中取一部分
 def load_train_data(model_name):
@@ -178,7 +161,6 @@ def metrics(pred,model_name):
 
 # 调用各模型
 if __name__ == '__main__':
-    start_time = timer()
     if model_name == 'CNN':
         pred_cnn = cnn_model(data_size, radio, output_path,batch,epoch,learnrate,iftemplate)
         metrics(pred_cnn,model_name)
@@ -195,18 +177,6 @@ if __name__ == '__main__':
         pred_svm = svm_model(train_dataset,test_dataset,output_path)
         metrics(pred_svm,model_name)
         print("================SVM END ============================")
-    elif model_name == 'GBDT':
-        train_dataset = load_train_data('GBDT')
-        test_dataset = load_test_data('GBDT')
-        pred_gbdt = gbdt_model(train_dataset, test_dataset, output_path)
-        metrics(pred_gbdt,model_name)
-        print("================GBDT END ============================")
-    elif model_name == 'MLP':
-        train_dataset = load_train_data('MLP')
-        test_dataset = load_test_data('MLP')
-        pred_mlp = mlp_model(train_dataset, test_dataset, output_path, batch, epoch, learnrate)
-        metrics(pred_mlp,model_name)
-        print("================MLP END ============================")
     elif model_name =='KNN':
         train_dataset = load_train_data('KNN')
         test_dataset = load_test_data('KNN')
@@ -226,64 +196,9 @@ if __name__ == '__main__':
         pred_fcn = fcn_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate)
         metrics(pred_fcn,model_name)
         print("================FCN END ============================")
-    # elif model_name == 'Resnet':
-    #     pred_resnet = resnet_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate)
-    #     metrics(pred_resnet,model_name)
-    #     print("================Resnet END ============================")
-    # elif model_name == 'CNN1D':
-    #     pred_cnn1d = cnn1d_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate)
-    #     metrics(pred_cnn1d,model_name)
-    #     print("================CNN1D END ============================")
     elif model_name == 'GRU':
         train_dataset = load_train_data('GRU')
         test_dataset = load_test_data('GRU')
         pred_gru = gru_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate)
         metrics(pred_gru,model_name)
         print("================GRU END ============================")
-        # elif model_name == 'BIGRU':
-        #     pred_bigru = bigru_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate)
-        #     metrics(pred_bigru,model_name)
-        #     print("================BIGRU END ============================")
-        # elif model_name =='all':
-        #     pred_knn = knn_model(train_dataset,test_dataset,output_path)
-        #     metrics(pred_knn,model_name)
-        #     print("================KNN END ============================")
-        #     pred_svm = svm_model(train_dataset,test_dataset,output_path)
-        #     metrics(pred_svm,model_name)
-        #     print("================SVM END ============================")
-        #     pred_tcn = tcn_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate)
-        #     metrics(pred_tcn,model_name)
-        #     print("================TCN END ============================")
-        #     pred_gru = gru_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate)
-        #     metrics(pred_gru,model_name)
-        #     print("================GRU END ============================")
-        #     train_dataset = load_train_data('DT')
-        #     test_dataset = load_test_data('DT')
-        #     pred_dt = dt_model(train_dataset,test_dataset,output_path)
-        #     metrics(pred_dt,model_name)
-        #     print("================DT END ============================")
-        #     pred_mlp = mlp_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate)
-        #     metrics(pred_mlp,model_name)
-        #     print("================MLP END ============================")
-        #     pred_cnn = cnn_model(data_size, radio, output_path,batch,epoch,learnrate)
-        #     metrics(pred_cnn,model_name)
-        #     print("================CNN END ============================")
-        #     end_time = timer()
-        #     print("time_consume:",end_time-start_time)
-        # elif model_name =='all_gpu':
-        #     pred_tcn = tcn_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate)
-        #     metrics(pred_tcn,model_name)
-        #     print("================TCN END ============================")
-        #
-        #     train_dataset = load_train_data('MLP')
-        #     test_dataset = load_test_data('MLP')
-        #     pred_mlp = mlp_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate)
-        #     metrics(pred_mlp,model_name)
-        #     print("================MLP END ============================")
-        #
-        #     pred_cnn = cnn_model(data_size, radio, output_path,batch,epoch,learnrate)
-        #     metrics(pred_cnn,model_name)
-        #     print("================CNN END ============================")
-
-        end_time = timer()
-        print("time_consume:",end_time-start_time)

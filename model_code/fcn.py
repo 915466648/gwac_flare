@@ -1,11 +1,10 @@
 # coding=utf-8
 
 import numpy as np
-import tensorflow as tf
-from tensorflow.keras.optimizers import Adam,SGD
+from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import Model
 from sklearn.metrics import fbeta_score,classification_report
-from tensorflow.keras.layers import add,Input,Conv2D,Activation,Flatten,Dense,Dropout,BatchNormalization,GlobalAveragePooling2D
+from tensorflow.keras.layers import Input,Conv2D,Activation,Dense,BatchNormalization,GlobalAveragePooling2D
 from tensorflow.keras.initializers import glorot_uniform
 SEED = 6666666
 # if time_steps > tcn_layer.receptive_field, then we should not

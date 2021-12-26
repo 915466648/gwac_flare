@@ -27,8 +27,6 @@ def dt_model(train_dataset,test_dataset,output_path):
          "max_features": [*range(5, 14)],
          'min_samples_leaf': [*range(1, 50, 5)]
     }
-    # clf = DecisionTreeClassifier(max_features=features, max_depth=depth)
-    # scoring = {'f2':make_scorer(fbeta_score, beta=2),'p':'precision','r':'recall'}
     GS = GridSearchCV(DecisionTreeClassifier(), parameters,cv=10,scoring=make_scorer(fbeta_score, beta=2),return_train_score=True)  # cv交叉验证
     # scoring :Strategy to evaluate the performance of the cross-validated model on the test set.
     GS.fit(X_train, Y_train)
@@ -60,6 +58,6 @@ def dt_model(train_dataset,test_dataset,output_path):
     Y_pred = reg.predict(X_test)
     print(classification_report(Y_test, Y_pred, digits=4))
 
-    path = output_path + 'DecisionTreeClassifier'+ str(test_score_c) + '.pkl'
-    joblib.dump(reg, path)
+    # path = output_path + 'DecisionTreeClassifier'+ str(test_score_c) + '.pkl'
+    # joblib.dump(reg, path)
     return Y_pred

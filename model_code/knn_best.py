@@ -19,11 +19,10 @@ def knn_model(train_dataset,test_dataset,output_path):
     print("X_test.shape",X_test.shape)
     print("Y_test.shape",Y_test.shape)
 
-    # 计算训练时间
     neighbors = 2
     knn = KNeighborsClassifier(n_neighbors = neighbors)
     knn.fit(X_train, Y_train)
-    # 输出预测性能指标
+
     y_pred = knn.predict(X_test)
     f2 = fbeta_score(Y_test,y_pred,beta=2)
     path = output_path + 'KNN'+ str(f2) + '.pkl'

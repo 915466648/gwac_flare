@@ -1,14 +1,14 @@
 # coding=utf-8
 import numpy as np
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout
-from tensorflow.keras.layers import GRU,Bidirectional
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import GRU
 from timeit import default_timer as timer
-# from sklearn.model_selection import train_test_split
+
 from sklearn.metrics import classification_report,fbeta_score
 SEED = 6666666
 from tensorflow.keras.initializers import glorot_uniform,orthogonal
-from tensorflow.keras.optimizers import Adam,SGD
+from tensorflow.keras.optimizers import Adam
 
 def gru_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate):
     print("================GRU Start=====================")
@@ -46,10 +46,6 @@ def gru_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate):
     current_time = timer()
     print("train_time",(current_time-start_time)/epoch)
 
-    # score = GRU_model.evaluate(x_test, y_test)
-    # print("evaluate_score_c:", score)
-    # # mp = output_path +"gru" +str(score[1])+".h5"
-    # # GRU_model.save(mp)
 
     start_time = timer()
     gru_y_pred = GRU_model.predict(x_test).round()
@@ -61,15 +57,3 @@ def gru_model(train_dataset,test_dataset,output_path,batch,epoch,learnrate):
     GRU_model.save(mp)
     print(classification_report(y_test, gru_y_pred, digits=4))
     return gru_y_pred
-
-    # # 计算模型预测时间
-    # test_time_gru = []
-    # for i in range(10):
-    #     start_time = timer()
-    #     GRU_model.predict(x_test, batch_size=500)
-    #     current_time = timer()
-    #     test_time_gru.append(current_time-start_time)
-    #     print(current_time-start_time)
-    #     i = i+1
-    # print(test_time_gru)
-    # print(np.mean(test_time_gru))

@@ -7,7 +7,7 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.models import Sequential
 import numpy as np
 from sklearn.metrics import fbeta_score,classification_report
-from tensorflow.keras.optimizers import Adam,SGD
+from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.initializers import glorot_uniform
 SEED = 6666666
 # if time_steps > tcn_layer.receptive_field, then we should not
